@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Colin's Portfolio</title>
+    
+    <!-- Compatibility Patch for KaTeX in quirks mode environments -->
+    <script>
+      try {
+        // KaTeX requires CSS1Compat (Standards Mode). 
+        // If the environment forces BackCompat (Quirks Mode), we monkey-patch it to fool KaTeX.
+        if (document.compatMode === 'BackCompat') {
+          Object.defineProperty(document, 'compatMode', {
+            get: function() { return 'CSS1Compat'; },
+            configurable: true
+          });
+        }
+      } catch(e) { console.warn('Compat patch failed', e); }
+    </script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+    
+    <!-- KaTeX for Math Rendering (Switched to cdnjs for reliability) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+    <!-- Auto-render extension for inline math -->
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+
+    <!-- PrismJS for Syntax Highlighting (Tomorrow Night Theme matches your dark mode) -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-c.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-cpp.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-jsx.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-tsx.min.js"></script>
+
+    <style>
+      body {
+        background-color: #1a1b26;
+        color: #a9b1d6;
+        font-family: 'VT323', monospace;
+        overflow-x: hidden;
+      }
+      h1, h2, h3 {
+        font-family: 'Press Start 2P', cursive;
+      }
+      /* Custom Scrollbar */
+      ::-webkit-scrollbar {
+        width: 12px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #1a1b26;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #414868;
+        border: 2px solid #1a1b26;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #7aa2f7;
+      }
+      .pixel-shadow {
+        box-shadow: 4px 4px 0px 0px #000000;
+      }
+      .pixel-shadow-hover:hover {
+        transform: translate(2px, 2px);
+        box-shadow: 2px 2px 0px 0px #000000;
+      }
+      .pixel-border {
+        border: 4px solid #000;
+      }
+      /* Math styling overrides */
+      .katex {
+        font-size: 1.2rem !important;
+        color: #c0caf5 !important;
+      }
+      .katex .base {
+        color: #c0caf5 !important;
+      }
+      /* PrismJS Overrides to match Pixel theme */
+      pre[class*="language-"] {
+        background: #16161e !important;
+        text-shadow: none !important;
+        font-family: 'VT323', monospace !important;
+        font-size: 1.1rem !important;
+        border: none !important;
+        margin: 0 !important;
+        padding: 1rem !important;
+      }
+      code[class*="language-"] {
+        font-family: 'VT323', monospace !important;
+        text-shadow: none !important;
+      }
+      
+      /* --- CUSTOM HIGHLIGHT STYLE --- */
+      /* Replaces standard bolding with theme color highlight */
+      .pixel-text-highlight {
+        color: #bb9af7 !important; /* Dracula Purple */
+        font-weight: normal !important;
+        text-shadow: 1px 1px 0px #000;
+      }
+
+      /* --- RETRO LINK STYLES OVERRIDES --- */
+      /* Override standard external links (text-blue-600) */
+      .retro-link-container a {
+        color: #7aa2f7 !important; 
+        text-decoration: none !important;
+        border-bottom: 2px solid rgba(122, 162, 247, 0.3);
+        transition: all 0.2s;
+      }
+      .retro-link-container a:hover {
+        color: #bb9af7 !important;
+        border-bottom-color: #bb9af7;
+        background-color: rgba(187, 154, 247, 0.1);
+      }
+
+      /* Override internal reference links (bg-blue-50, rounded) */
+      .retro-link-container a[data-internal-link="true"] {
+        background-color: #24283b !important;
+        color: #7dcfff !important;
+        border: 2px solid #414868;
+        border-radius: 0 !important; /* Kill the rounded corners */
+        font-family: 'VT323', monospace;
+        padding: 0 6px !important;
+        margin: 0 4px;
+        box-shadow: 2px 2px 0px 0px #000;
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        transform: translateY(-1px);
+      }
+      .retro-link-container a[data-internal-link="true"]:hover {
+        background-color: #292e42 !important;
+        border-color: #bb9af7;
+        color: #bb9af7 !important;
+        transform: translate(1px, 1px); /* Pressed effect */
+        box-shadow: 1px 1px 0px 0px #000;
+      }
+    </style>
+
+<script type="importmap">
+{
+  "imports": {
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "react-dom/client": "https://aistudiocdn.com/react-dom@^19.2.0/client",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.554.0",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/"
+  }
+}
+</script>
+  <script type="module" crossorigin src="/assets/index-BStQPVx5.js"></script>
+</head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
+
+
