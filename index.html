@@ -142,6 +142,41 @@
         transform: translate(1px, 1px); /* Pressed effect */
         box-shadow: 1px 1px 0px 0px #000;
       }
+
+      /* --- Ghetto Blaster music player (3-frame sprite 540x186) --- */
+      .ghetto-blaster {
+        width: 90px;
+        height: 93px;
+        background-image: url('/ghetto-blaster.png');
+        background-repeat: no-repeat;
+        background-position: 0 0;
+        background-size: 270px 93px;
+        image-rendering: pixelated;
+        image-rendering: crisp-edges;
+      }
+      @media (min-width: 640px) {
+        .ghetto-blaster {
+          width: 120px;
+          height: 124px;
+          background-size: 360px 124px;
+        }
+      }
+      .ghetto-blaster.is-playing {
+        animation: ghetto-blaster-play 0.42s steps(3) infinite;
+      }
+      @media (min-width: 640px) {
+        .ghetto-blaster.is-playing {
+          animation-name: ghetto-blaster-play-lg;
+        }
+      }
+      @keyframes ghetto-blaster-play {
+        from { background-position: 0 0; }
+        to { background-position: -270px 0; }
+      }
+      @keyframes ghetto-blaster-play-lg {
+        from { background-position: 0 0; }
+        to { background-position: -360px 0; }
+      }
     </style>
 
 <script type="importmap">
@@ -155,7 +190,7 @@
   }
 }
 </script>
-  <script type="module" crossorigin src="/assets/index-BEz_9ps5.js"></script>
+  <script type="module" crossorigin src="/assets/index-B8dLfYjC.js"></script>
 </head>
   <body>
     <div id="root"></div>
