@@ -121,14 +121,30 @@
         max-width: 100%;
         overflow-x: auto;
         margin: 0.75rem 0;
-        text-align: left;
+        text-align: center;
       }
       .proof-rich-text .katex {
         font-size: 1.05em !important;
       }
       .proof-rich-text .katex-display {
         margin: 0.55rem 0 !important;
-        text-align: left;
+        text-align: center;
+      }
+      .proof-rich-text .proof-display-math .katex-display > .katex {
+        display: block;
+        width: max-content;
+        min-width: 100%;
+        max-width: none;
+        text-align: center !important;
+      }
+      .proof-rich-text .proof-display-math .katex-display > .katex > .katex-html {
+        box-sizing: border-box;
+        display: block;
+        width: max-content;
+        min-width: 100%;
+        max-width: none;
+        padding-right: 3.75rem;
+        position: relative;
       }
 
       /* --- RETRO LINK STYLES OVERRIDES --- */
