@@ -22,7 +22,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Source+Serif+4:wght@400;500;600;700&family=VT323&display=swap" rel="stylesheet">
     
     <!-- KaTeX for Math Rendering (Switched to cdnjs for reliability) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
@@ -104,6 +104,21 @@
         color: #bb9af7 !important; /* Dracula Purple */
         font-weight: normal !important;
         text-shadow: 1px 1px 0px #000;
+      }
+
+      .blog-rich-text {
+        font-family: "Source Serif 4", Georgia, "Times New Roman", serif;
+        letter-spacing: 0;
+        font-kerning: normal;
+        text-rendering: optimizeLegibility;
+      }
+      .blog-rich-text .pixel-text-highlight {
+        color: #f9e2af !important;
+        font-weight: 700 !important;
+        text-shadow: none;
+      }
+      .blog-rich-text .katex {
+        font-size: 1em !important;
       }
 
       .proof-rich-text {
@@ -231,7 +246,7 @@
   }
 }
 </script>
-  <script type="module" crossorigin src="/assets/index-CEIR4Aee.js"></script>
+  <script type="module" crossorigin src="/assets/index-7Qt-Y7nN.js"></script>
 </head>
   <body>
     <div id="root"></div>
